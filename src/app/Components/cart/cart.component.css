@@ -1,0 +1,18 @@
+.card{
+    float:right;
+    width:25%;
+    height:25%;
+    position:absolute;
+    right:4%;
+    top:15%;
+}
+
+.table{
+    width:70%;
+}
+.imageSize{
+    height:200px;
+    width:60%;
+}
+
+

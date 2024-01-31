@@ -1,0 +1,33 @@
+
+
+.container-fluid{
+    background-color:green;
+}
+.slideSize{
+    width:400px
+}
+.imageSize{
+    height:350px;
+    width:100%;
+   
+}
+.green-box-container{
+    background-color: greenyellow;
+    width:1920px;
+    height:100px;
+}
+.card-image{
+    width:250x;
+    height:250px;
+}
+.card-img-top{
+    transition: transform .3s;
+}
+.card-img-top:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1); 
+}
+
+
+

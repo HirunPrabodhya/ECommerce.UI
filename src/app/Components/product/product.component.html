@@ -1,0 +1,78 @@
+<div class="input-group">
+    <div class="form-outline">
+      <input type="search" id="form1" class="form-control" placeholder="Search" #inputValue/>
+     
+    </div>
+    <button type="button" style = "height:40px"class="btn btn-primary" (click)="searchProduct(inputValue.value)">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+  <button  type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="errorMessage == '';else errorStatus">
+    <div class="col" *ngFor="let product of products">
+        <div class="card h-100">
+            <a><img [src]="product.ImagePath" class="card-img-top imageSize" alt="..."></a>
+            <div class="card-body">
+            <h5 class="card-title" routerLink="/product">{{product.Name}}</h5>
+            <p class="card-text price-text">{{product.UnitPrice}}</p>
+            <span class="btn btn-primary rounded-pill" (click)="plusMinusButtons('fa-plus',product)"> + </span>
+            <span class="card-text">{{product.Quentity}}</span>
+            <span class="btn btn-primary rounded-pill" (click)="plusMinusButtons('fa-minus',product)"> - </span>
+            </div>
+            <div>
+                <button class="btn btn-success" (click)="addToCart(product)">AddToCart</button> 
+                <button class="btn btn-warning">Edit</button>
+                <button class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+   
+</div>
+ <!--error message-->
+ <ng-template #errorStatus>
+  <h1>{{errorMessage}}</h1>
+</ng-template>
+
+<!--product add form-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name" formControlName="name">
+      
+                    </div>
+                    <div class="mb-3">
+                      <label for="price" class="form-label">price</label>
+                      <input type="text" class="form-control" id="price" formControlName="price" placeholder="100">
+                    </div>
+                    <div class="mb-3">
+                      <label for="image" class="form-label">Image</label>
+                      <input type="file" class="form-control" id="image" (change)="changeImage($event)">
+                    </div>
+                    <div class="mb-3">
+                      <label for="category" class="form-label">Category:</label>
+                    
+                      <select name="category" id="category" formControlName="category" (change)="changeOption($event)">
+                        <option value="" selected disabled>select</option>
+                        <option  *ngFor="let category of categoryList" [value]="category.Id">{{category.Name}}</option>
+                      </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeForm()">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>

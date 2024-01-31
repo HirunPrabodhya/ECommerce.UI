@@ -1,0 +1,11 @@
+.form-control.ng-pristine.ng-invalid.ng-touched{
+    border: 1px red solid;
+
+}
+
+.form-control.ng-invalid.ng-touched.ng-dirty{
+    border: 1px red solid;
+}
+.fa-eye,.fa-eye-slash{
+    cursor: pointer;
+}

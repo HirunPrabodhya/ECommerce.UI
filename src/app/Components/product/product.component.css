@@ -1,0 +1,24 @@
+.imageSize{
+    height:200px;
+    width:60%;
+    position: relative;
+    left:30px;
+}
+.row{
+    width: 40%;
+}
+
+.rounded-pill,.card-text{
+    position: relative;
+    left: 50px;
+}
+.card-title{
+    position: relative;
+    left: 55px;
+}
+.price-text{
+    position: relative;
+    left: 70px;
+}
+
+

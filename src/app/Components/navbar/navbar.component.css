@@ -1,0 +1,6 @@
+.nav-link:hover{
+    color:red;
+}
+.dropdown-item{
+    cursor: pointer;
+}

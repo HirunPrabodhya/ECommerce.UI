@@ -1,0 +1,57 @@
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="p1" (change)="getOption($event)">
+    <label class="form-check-label" for="inlineRadio1">Credit or Debit card</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="p2" (change)="getOption($event)">
+    <label class="form-check-label" for="inlineRadio2">PayPal</label>
+  </div>
+<div *ngIf="options ==  'p1'">
+    <form [formGroup]="orderForm">
+        <div>
+        <input type="text" placeholder="Card number" formControlName="card">
+        <div *ngIf="cardValue?.touched && cardValue?.invalid">
+                <span class="text-danger" *ngIf="cardValue?.errors?.['required']">*Card number is required</span>
+                <span class="text-danger" *ngIf="cardValue?.errors?.['minlength']">*Card number should be {{orderForm.get('card')?.errors?.['minlength'].requiredLength}} digits</span>
+                <span class="text-danger" *ngIf="cardValue?.errors?.['maxlength']">*Card number should be {{orderForm.get('card')?.errors?.['maxlength'].requiredLength}} digits</span>
+        </div>
+    </div>
+    <div>
+        <input type="date" placeholder="Expiration date" formControlName="date">
+        <div *ngIf="dataValue?.touched && dataValue?.invalid">
+            <span class="text-danger" *ngIf="dataValue?.errors?.['required']">*Date is required</span>
+        </div>
+    </div>
+    <div>
+        <input type="text" placeholder = "Security code" formControlName="security">
+        <div *ngIf="security?.touched && security?.invalid">
+            <span class="text-danger" *ngIf="security?.errors?.['required']">*Security Code is required</span>
+            <span class="text-danger" *ngIf="security?.errors?.['minlength']">*Security Code should be {{orderForm.get('security')?.errors?.['minlength'].requiredLength}} digits</span>
+        </div>
+    </div>
+    <div>
+        <input type="text" placeholder="firstname" [value]="splittedName[0]" readonly>
+        <input type="text" placeholder="lastname" [value]="splittedName[1]" readonly>
+    </div>
+
+    </form>
+</div>
+<div *ngIf="options == 'p2'">
+    <form [formGroup]="orderForm2">
+    <div>
+        <input type="text" placeholder="Card number" formControlName="card2">
+        <div *ngIf="card2Value?.touched && card2Value?.invalid">
+                <span class="text-danger" *ngIf="card2Value?.errors?.['required']">*Card number is required</span>
+                <span class="text-danger" *ngIf="card2Value?.errors?.['minlength']">*Card number should be {{orderForm2.get('card2')?.errors?.['minlength'].requiredLength}} digits</span>
+        </div>
+    </div>
+</form>
+</div>
+<div>
+    <h4>Ship To:</h4>
+    <p>{{name}}</p>
+    <p>{{address}}</p>
+    <p>{{phoneNumber}}</p>
+</div>
+<!--<button  [disabled]="orderForm.invalid && orderForm2.invalid" (click)="getOrder()">Confirm and Pay</button>-->
+<button  (click)="getOrder()">Confirm and Pay</button>
